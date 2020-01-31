@@ -8,6 +8,7 @@ ARG TOOLCHAIN_DOWNLOAD_PATH="/tmp/gcc-arm-none-eabi.tar.bz2"
 RUN apt-get update && apt-get install -y wget bzip2 build-essential && \
     wget "$TOOLCHAIN_DOWNLOAD_URL" -O "$TOOLCHAIN_DOWNLOAD_PATH" && \
     tar xavf "$TOOLCHAIN_DOWNLOAD_PATH" -C "$TOOLCHAIN_INSTALL_DIR" && \
-    mv "$TOOLCHAIN_INSTALL_DIR"/gcc-arm-none-eabi-* "$TOOLCHAIN_DIR"
+    mv "$TOOLCHAIN_INSTALL_DIR"/gcc-arm-none-eabi-* "$TOOLCHAIN_DIR" && \
+    rm -f "$TOOLCHAIN_DOWNLOAD_PATH"
 
 ENV PATH="$TOOLCHAIN_DIR/bin:${PATH}"
